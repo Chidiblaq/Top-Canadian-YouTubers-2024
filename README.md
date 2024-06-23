@@ -319,6 +319,7 @@ Although one will argue that "Super Simple Songs - Kids Songs" (SSS) has more vi
 - SQL Script for Cleaning and Testing (YouTuberSQLQuery.sql)
 - SQL Script for Analysis (AnalysisSQLQuery.sql)
 - Power BI Dashboard (Top_Canadian_Youtubers_2024.pbix)
+- Excel file for Average View Analysis (YouTubers Analysis Workbook.xlsx)
 
 ## How to Use:  
 - Clone the repository.  
