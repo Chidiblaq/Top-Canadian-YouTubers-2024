@@ -4,19 +4,20 @@
 
 # Table of contents
 - [Overview](#Overview)
-- [Problem Statement](#ProblemStatement)
-- [Business Case](#BusinessCase)
-- [Data Source](#DataSource)
-- [Project Stages](#ProjectStages)
+- [Problem Statement](#Problem-Statement)
+- [Business Case](#Business-Case)
+- [Data Sources](#Data-Sources)
+- [Project Stages](#Project-Stages)
   - [Development](#Development)
-    - [Data Exploration](#DataExploration)
-    - [Data Cleaning](#DataCleaning)
-  - [Testing](#Development)
-  - [Visualization](#Development)
+    - [Data Exploration](#Data-Exploration)
+    - [Data Cleaning](#Data-Cleaning)
+  - [Testing](#Testing)
+  - [Visualization](#Visualization)
   - [Analysis](#Analysis)
   - [Recommendation](#Recommendation)
-- [Tools Used](#ToolsUsed)
-- [How to Use](#HowtoUse)
+- [Tools Used](#Tools-Used)
+- [Files Included](#Files-Included)
+- [How to Use](#How-to-Use)
 
 ## Overview  
 This data analysis project aims to identify and analyze the top influential Canadian YouTubers to facilitate marketing collaborations. The primary objective of the dashboard is to provide a comprehensive and user-friendly interface to discover the top-performing Canadian YouTubers.
@@ -27,7 +28,7 @@ Marketers need a reliable and efficient way to identify top Canadian YouTubers t
 ## Business Case  
 The dashboard provides valuable insights for marketing teams seeking to collaborate with top-performing Canadian YouTubers. By identifying key influencers based on subscriber count, views, and engagement metrics, marketers can make data-driven decisions to optimize their influencer partnerships.
 
-## Data Source  
+## Data Sources  
 - Kaggle: Initial dataset. https://www.kaggle.com/datasets/bhavyadhingra00020/top-100-social-media-influencers-2024-countrywise  
 - YouTube API: Python script to gather additional data (Total Subscribers, Total Videos, and Total Views).  
 
@@ -312,6 +313,12 @@ Although one will argue that "Super Simple Songs - Kids Songs" (SSS) has more vi
 - Power BI: Data visualization.  
 - Python Script: Data collection from YouTube API.  
 
+## Files Included:
+- Python Script (data_from_youtube_api.py)
+- Dataset (updated_youtube_data_canada.csv)
+- SQL Script for Cleaning and Testing (YouTuberSQLQuery.sql)
+- SQL Script for Analysis (AnalysisSQLQuery.sql)
+- Power BI Dashboard (Top_Canadian_Youtubers_2024.pbix)
 
 ## How to Use:  
 - Clone the repository.  
@@ -319,4 +326,4 @@ Although one will argue that "Super Simple Songs - Kids Songs" (SSS) has more vi
 - Use the provided Power BI dashboard to explore insights and findings.
 
 
-This README provides an overview of the project, detailing each stage and providing essential information for users to understand the objectives, processes, and outcomes of the analysis.
+This README provides an overview of the project, detailing each stage and providing essential information for users to understand the objectives, processes, and outcomes of the analysis. I have attached all the files I used for this analysis here in this repository.
