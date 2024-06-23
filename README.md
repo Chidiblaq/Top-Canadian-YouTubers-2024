@@ -1,6 +1,6 @@
 # Top Influential Canadian YouTubers Analysis
 
-![excel-to-powerbi-animated-diagram]()
+![excel-to-powerbi-animated-diagram](Images/kaggle_to_powerbi.gif)
 
 # Table of contents
 - [Overview](#Overview)
@@ -149,7 +149,7 @@ having count(*) > 1
 Imported data into Power BI.  
 Created DAX measures and visualizations (Tree Map, Table, Bar Charts, and Cards).  
 Created visuals to display key metrics: Total Subscribers, Total Views, Average Views, Total Videos, and Subscriber Engagement Rates.  
-![TopCanadianYoutubers]()
+![TopCanadianYoutubers](Images/TopYoutubersDashboard.png)
 
 ## Analysis  
 Addressed these key questions for marketing clients:  
@@ -160,8 +160,150 @@ Addressed these key questions for marketing clients:
 5. Which 3 channels have the highest views per subscriber ratio?  
 6. Which 3 channels have the highest subscriber engagement rate per video uploaded?  
 
+#### 1. Who are the top 10 YouTubers with the most subscribers?
+
+| Rank | Channel Name                    | Subscribers (M) |
+|------|---------------------------------|-----------------|
+| 1    | Justin Bieber                   | 73.10           |
+| 2    | Super Simple Songs - Kids Songs | 41.90           |
+| 3    | The Weeknd                      | 35.20           |
+| 4    | WatchMojo.com                   | 25.40           |
+| 5    | Linus Tech Tips                 | 15.70           |
+| 6    | Hacksmith Industries            | 14.80           |
+| 7    | Typical Gamer                   | 14.60           |
+| 8    | AzzyLand                        | 13.20           |
+| 9    | MrSuicideSheep                  | 12.80           |
+| 10   | Heidi and Zidane Kids Fun       | 12.70           |
+
+
+### 2. Which 3 channels have uploaded the most videos?  
+
+| Rank | Channel Name        | Videos Uploaded |
+|------|---------------------|-----------------|
+| 1    | Global News         | 40167           |
+| 2    | WatchMojo.com       | 27176           |
+| 3    | Step News Agency    | 12361           |
+
+
+### 3. Which 3 channels have the most views?  
+
+| Rank | Channel Name                    | Most Views (B)  |
+|------|---------------------------------|-----------------|
+| 1    | Super Simple Songs - Kids Songs | 50.94           |
+| 2    | Justin Bieber                   | 32.31           |
+| 3    | The Weeknd                      | 27.43           |
+
+### 4. Which 3 channels have the highest average views per video?  
+
+| Rank | Channel Name                    | Average Views per Video (M) |
+|------|---------------------------------|-----------------------------|
+| 1    | Justin Bieber                   | 73.10                       |
+| 2    | Super Simple Songs - Kids Songs | 41.90                       |
+| 3    | The Weeknd                      | 35.20                       |
+
+### 5. Which 3 channels have the highest views per subscriber ratio?  
+
+| Rank | Channel Name                    | Views per Subscriber |
+|------|---------------------------------|----------------------|
+| 1    | Super Simple Songs - Kids Songs | 1215.84              |
+| 2    | SpyCakes                        | 971.66               |
+| 3    | Super Simple ABCs               | 945.46               |
+
+### 6. Which 3 channels have the highest subscriber engagement rate per video uploaded?  
+
+| Rank | Channel Name                               | Subscriber Engagement Rate |
+|------|--------------------------------------------|----------------------------|
+| 1    | Justin Bieber                              | 293,574.30                 |
+| 2    | Two Super Sisters 2                        | 256,666.67                 |
+| 3    | Baby Big Mouth Kids - Sing, Dance, Explore | 214,893.62                 |
+
+
+For this analysis, I prioritized analysing the metric that in my view is the most important in generating the expected ROI for our marketing client, which is the YouTube channels with the most Average View when compared with the videos uploaded. This metric is vital because it shows channels that are performing well, providing the most entertaining and engaging contents. So this metric shows the most influential YouTubers. Also, it is worthy to note that views does not only come from subscribers alone.  
+Below is the analysis of the average views per video
+
+![AverageViewAnalysis](Images/AvgViewsAnalysis.png)
+
+#### Calculation breakdown
+Assuming these hypothetical value:
+Conversion rate	= 2%
+Product cost	= $5
+Campaign cost	= $50,000
+
+a. Justin Bieber
+
+- Average views per video = 129,750,000
+- Product cost = $5
+- Potential units sold per video = 129,750,000 x 2% conversion rate =  2,595,000 units sold
+- Potential revenue per video = 2,595,000 x $5 = $12,975,000
+- Campaign cost (3-month contract) = $50,000
+- **Net profit = $12,975,000 - $50,000 = $12,925,000**
+
+b. Super Simple Songs - Kids Songs
+
+- Average views per video = 64,320,000
+- Product cost = $5
+- Potential units sold per video = 64,320,000 x 2% conversion rate =  1,286,400 units sold
+- Potential revenue per video = 1,286,400 x $5 = $6,432,000
+- Campaign cost (3-month contract) = $50,000
+- **Net profit = $6,432,000 - $50,000 = $6,382,000**
+
+c. The Weeknd
+
+- Average views per video = 159,470,000
+- Product cost = $5
+- Potential units sold per video = 159,470,000 x 2% conversion rate =  3,189,400 units sold
+- Potential revenue per video = 3,189,400 x $5 = $15,947,000
+- Campaign cost (3-month contract) = $50,000
+- **Net profit = $15,947,000 - $50,000 = $15,897,000**
+
+Best option from Average View per Video: The Weeknd
+
+
+``` sql
+
+/*
+1. Define the variables.
+2. Create a CTE that rounds the average views per video.
+3. Select the columns that are required for the analysis.
+4. Filter the results by the YouTube channels with the highest subscriber bases
+5. Order by net_profit (descending)
+
+*/
+
+-- 1
+DECLARE @conversion_rate FLOAT = 0.02   -- The conversion rate @ 2%
+DECLARE @Product_cost MONEY = 5.0       -- The product cost @ $5 CAD
+DECLARE @campaign_cost MONEY = 50000.0;  -- The campaign cost @$50000 CAD
+
+-- 2
+WITH ChannelData AS(
+	SELECT
+	channel_name,
+	total_videos,
+	total_views,
+	ROUND((CAST(total_views AS FLOAT)/total_videos), -4) AS rounded_avg_views_per_video
+	FROM youtube_db.dbo.view_Canada_Youtubers_2024
+)
+
+-- 3
+SELECT 
+	channel_name, 
+	rounded_avg_views_per_video,
+	(rounded_avg_views_per_video * @conversion_rate) as potential_units_sold_per_video,
+	(rounded_avg_views_per_video * @conversion_rate * @Product_cost) as potential_revenue_per_video,
+	(rounded_avg_views_per_video * @conversion_rate * @Product_cost) - @campaign_cost as net_profit
+FROM ChannelData
+
+-- 4
+WHERE channel_name in ('Justin Bieber', 'Super Simple Songs - Kids Songs', 'The Weeknd', 'WatchMojo.com')
+
+-- 5
+ORDER BY net_profit DESC
+
+```
+
 ## Recommendations:
-Although one will argue that "Super Simple Songs - Kids Songs" (SSS) has more views in total (50.94 billion) with 792 videos made so it is clearly the best channel to partner with but in reality, the channel is actually performing poorly when you compare the average view per video(~ 64 million) with other top 3 channels (Justin Bieber - 129 million) and (The Weeknd - 159 million). On further deep down analysis, the ROI using the average view per video, I would recommend partnering with "The Weeknd" and/or "Justin Bieber" because it makes more business sense when comparing the Return on Investment.
+Although one will argue that "Super Simple Songs - Kids Songs" (SSS) has more views in total (50.94 billion) with 792 videos made, so it is clearly the best channel to partner with but in reality, the channel is actually performing poorly when you compare the average view per video(~ 64 million) with other top 3 channels (Justin Bieber - 129 million) and (The Weeknd - 159 million). On further deep down analysis, the ROI using the average view per video, I would recommend partnering with "The Weeknd" and/or "Justin Bieber" because it makes more business sense when comparing the Return on Investment.
 
 
 ## Tools Used:  
