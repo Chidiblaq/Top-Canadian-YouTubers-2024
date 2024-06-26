@@ -20,7 +20,8 @@
 - [How to Use](#How-to-Use)
 
 ## Overview  
-This data analysis project aims to identify and analyze the top influential Canadian YouTubers to facilitate marketing collaborations. The primary objective of the dashboard is to provide a comprehensive and user-friendly interface to discover the top-performing Canadian YouTubers.
+This data analysis project aims to identify and analyze the top influential Canadian YouTubers to facilitate marketing collaborations. The primary objective of the dashboard is to provide a comprehensive and user-friendly interface to discover the top-performing Canadian YouTubers.  
+This is the link to interact and navigate the [dashboard](https://app.powerbi.com/view?r=eyJrIjoiNTBiMTU3ZGUtMjZhZi00M2I4LThjYzUtMWUwMzRmNmY5ODYzIiwidCI6ImQwZWYwYjU4LWQ0YTItNGJjZS1iMDFiLTQxZWQ0ZGMyZjU3ZSJ9)
 
 ## Problem Statement  
 Marketers need a reliable and efficient way to identify top Canadian YouTubers to form successful marketing collaborations. This project addresses this need by providing a comprehensive analysis and user-friendly dashboard to highlight influential YouTubers based on key performance metrics.
